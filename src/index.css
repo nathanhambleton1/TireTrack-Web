@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+
+/* Design tokens mirror TireTrack-App's src/theme.js so the web dashboard and the
+   mobile app read as one product. Keep the two in sync when either changes. */
+@theme {
+  --color-ink: #0f1012;
+  --color-elevated: #17181b;
+  --color-input: #1d1e22;
+  --color-stripe: #1a1b1f;
+  --color-edge: #2a2c31;
+  --color-edge-strong: #3a3d44;
+  --color-bone: #f2efe9;
+  --color-dim: #8b8e95;
+  --color-faint: #5a5d63;
+  --color-amber: #f5a623;
+  --color-amber-dark: #c2811a;
+  --color-ok: #7cb342;
+  --color-danger: #e5484d;
+
+  --font-display: 'Exo 2', system-ui, sans-serif;
+  --font-body: 'Barlow Condensed', system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-body);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+/* Faint diagonal hatch used behind hero and empty states, echoing the app's
+   NoiseOverlay component. */
+.hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(245, 166, 35, 0.045) 0px,
+    rgba(245, 166, 35, 0.045) 1px,
+    transparent 1px,
+    transparent 9px
+  );
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-edge);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-edge-strong);
+}
