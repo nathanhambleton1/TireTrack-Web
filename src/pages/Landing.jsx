@@ -79,7 +79,7 @@ export default function Landing() {
             </p>
           </div>
           <div className="perspective-distant flex justify-center py-4 lg:justify-end">
-            <AppPreview className="-rotate-2 rotate-x-6 -rotate-y-12 transition-transform duration-700 will-change-transform hover:rotate-1 hover:rotate-x-3 hover:-rotate-y-6" />
+            <AppPreview className="-rotate-2 rotate-x-6 -rotate-y-12" />
           </div>
         </div>
       </section>
