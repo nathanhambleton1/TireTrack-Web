@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { BarChart3, Camera, Gauge, Smartphone } from 'lucide-react';
+import { BarChart3, Camera, Gauge, NotebookPen, Smartphone } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/ui';
+import AppPreview from '../components/AppPreview';
 import { FLEET_DISPLAY } from '../data/fleet';
 
 const FEATURES = [
@@ -53,32 +54,64 @@ export default function Landing() {
       </header>
 
       <section className="hatch border-y border-edge px-5 py-20 sm:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="font-mono text-[11px] tracking-[0.25em] text-amber uppercase">
-            Tire inspection for heavy fleets
-          </p>
-          <h1 className="mt-5 font-display text-4xl leading-[1.1] sm:text-6xl">
-            Know which tire fails
-            <br />
-            <span className="text-amber">before it does.</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg text-dim">
-            TireTrack Pro turns a clipboard walk-around into costed, searchable history across
-            every haul truck, loader and grader you run.
-          </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <Button as="link" to={user ? '/dashboard' : '/sign-in'}>
-              {user ? 'Open dashboard' : 'Open the demo'}
-            </Button>
+        <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-2">
+          <div>
+            <p className="font-mono text-[11px] tracking-[0.25em] text-amber uppercase">
+              Tire inspection for heavy fleets
+            </p>
+            <h1 className="mt-5 font-display text-4xl leading-[1.1] sm:text-6xl">
+              Know which tire fails
+              <br />
+              <span className="text-amber">before it does.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg text-dim">
+              TireTrack Pro turns a clipboard walk-around into costed, searchable history across
+              every haul truck, loader and grader you run.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Button as="link" to={user ? '/dashboard' : '/sign-in'}>
+                {user ? 'Open dashboard' : 'Open the demo'}
+              </Button>
+            </div>
+            <p className="mt-6 font-mono text-xs text-faint">
+              {FLEET_DISPLAY.length} unit roster ·{' '}
+              {new Set(FLEET_DISPLAY.map((f) => f.category)).size} equipment classes preconfigured
+            </p>
           </div>
-          <p className="mt-6 font-mono text-xs text-faint">
-            {FLEET_DISPLAY.length} unit roster · {new Set(FLEET_DISPLAY.map((f) => f.category)).size}{' '}
-            equipment classes preconfigured
-          </p>
+          <div className="perspective-distant flex justify-center py-4 lg:justify-end">
+            <AppPreview className="-rotate-2 rotate-x-6 -rotate-y-12 transition-transform duration-700 will-change-transform hover:rotate-1 hover:rotate-x-3 hover:-rotate-y-6" />
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-5 py-16 sm:px-8">
+      <section className="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8">
+        <p className="font-mono text-[11px] tracking-[0.25em] text-amber uppercase">
+          Logged on-site, not re-typed later
+        </p>
+        <h2 className="mx-auto mt-4 max-w-xl font-display text-3xl leading-tight sm:text-4xl">
+          Skip the clipboard. The inspection <span className="text-amber">is</span> the record.
+        </h2>
+        <div className="mx-auto mt-8 max-w-xl space-y-5 text-left">
+          <div className="flex gap-3 opacity-60">
+            <NotebookPen size={18} className="mt-0.5 shrink-0 text-faint" />
+            <p className="text-sm leading-relaxed text-dim">
+              <span className="text-bone">The old way:</span> write tread, pressure and notes on a
+              paper form out in the yard, then sit down later and type it all into a spreadsheet —
+              twice the work, and numbers drift between the two.
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <Smartphone size={18} className="mt-0.5 shrink-0 text-amber" />
+            <p className="text-sm leading-relaxed text-dim">
+              <span className="text-bone">With TireTrack Pro:</span> scan the unit, step through
+              each tire position, and enter tread, PSI, condition and a photo right there. It's
+              saved the moment you tap next — nothing left to transcribe.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-5 pb-16 sm:px-8">
         <div className="grid gap-5 sm:grid-cols-2">
           {FEATURES.map(({ icon: Icon, title, body }) => (
             <div key={title} className="rounded-xl border border-edge bg-elevated p-6">
